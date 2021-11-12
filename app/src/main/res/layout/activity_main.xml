@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="50sp"
+        android:background="@color/Wheat"
+        android:gravity="center"
+        android:text="@string/textcashregister"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/textViewproduct"
+        android:layout_width="225dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/title"
+        android:layout_marginLeft="20sp"
+        android:layout_marginTop="50sp"
+        android:background="@color/Wheat"
+        android:gravity="center"
+        android:text="@string/product_type"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/textViewamount"
+        android:layout_width="91dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/title"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="50sp"
+        android:layout_marginRight="20sp"
+        android:layout_toRightOf="@id/textViewproduct"
+        android:background="@color/Wheat"
+        android:gravity="center"
+        android:text="@string/textviewamount"
+        android:textColor="@color/black" />
+
+    <TableLayout
+        android:id="@+id/tableid"
+        android:layout_below="@id/textViewproduct"
+        android:layout_marginLeft="20sp"
+        android:layout_marginTop="20sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/button1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#009688"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/button1"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#009688"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/button2"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#009688"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/button3"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/button4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#009688"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/button4"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/button5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#009688"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/button5"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/button6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#009688"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/button6"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/button7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#009688"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/button7"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/button8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#009688"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/button8"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/button9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#009688"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/button9"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/button0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#009688"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/button0"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/buttonCancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#009688"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/buttonC"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+        </TableRow>
+
+    </TableLayout>
+
+    <Button
+        android:id="@+id/buyButton"
+        android:layout_width="65dp"
+        android:layout_height="190dp"
+        android:layout_below="@id/textViewamount"
+        android:layout_marginLeft="29dp"
+        android:layout_marginTop="20dp"
+        android:layout_toRightOf="@id/tableid"
+        android:backgroundTint="#009688"
+        android:fontFamily="sans-serif-medium"
+        android:text="@string/buttonBuy"
+        android:textColor="@color/black"
+        android:textSize="16sp"></Button>
+
+    <TextView
+        android:id="@+id/textViewquantity"
+        android:layout_width="107dp"
+        android:layout_height="41dp"
+        android:layout_below="@id/tableid"
+        android:layout_marginLeft="20sp"
+        android:layout_marginTop="20sp"
+        android:background="@color/Wheat"
+        android:gravity="center"
+        android:text="@string/textQuantity"
+        android:textColor="@color/black" />
+
+    <ListView
+        android:id="@+id/listproduct"
+        android:layout_width="match_parent"
+        android:layout_height="284dp"
+        android:layout_below="@id/textViewquantity"
+        android:layout_marginTop="30sp"
+        tools:visibility="visible" />
+
+</RelativeLayout>
