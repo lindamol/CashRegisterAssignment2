@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity implements  View.OnClickList
     Button buyButton;
     TextView textquantity;
     int selectedPosition;
+    int quantity;
     TextView viewAmount;
     boolean isavailable = false;
     ProductManager managerobj = new ProductManager();
@@ -87,17 +88,14 @@ public class MainActivity extends AppCompatActivity implements  View.OnClickList
         else if(v== buyButton ) {
             if(text.isEmpty())
             { Toast.makeText(this,"All fields are required ", Toast.LENGTH_LONG).show();
-            //System.out.println("Text is empty");
-                //adaptor.notifyDataSetChanged();
-                }
+            }
             else{
-                int userqnty = Integer.parseInt((String) textquantity.getText());
-                isavailable = managerobj.checkQuantity(selectedPosition,userqnty);
-                if(isavailable){
-                    System.out.println("Yes truee Its available");
+                boolean isvalid = managerobj.calculateRestock(selectedPosition,quantity);
+                if(isvalid)
+                {System.out.println("Yes truee Its available");
                     adapter.notifyDataSetChanged();
-                    alertDialog();
-                }
+                    alertDialog();}
+                else{Toast.makeText(this,"Not Enough Quantity ", Toast.LENGTH_LONG).show();}
             }
 
                }
@@ -105,10 +103,10 @@ public class MainActivity extends AppCompatActivity implements  View.OnClickList
             text = text + buttontitle;
             textquantity.setText(text);
             double price = managerobj.productArray.get(selectedPosition).getPrice();
-            int quantity = Integer.parseInt(text);
+            quantity = Integer.parseInt(text);
             total = price*quantity;
             viewAmount.setText(total+"");
-            isavailable = managerobj.checkQuantity(selectedPosition,quantity);
+           isavailable = managerobj.checkQuantity(selectedPosition,quantity);
             if(isavailable == false){
                 Toast.makeText(this,"Not Enough Quantity ", Toast.LENGTH_LONG).show();
 

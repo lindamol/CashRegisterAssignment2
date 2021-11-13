@@ -16,17 +16,25 @@ public class ProductManager {
     void printArray()
     { System.out.println(productArray.toString()); }
 
-    boolean checkQuantity(int position, int quantity){
+    boolean checkQuantity(int position, int userquantity){
          boolean isavailable = false;
-         if(quantity <= productArray.get(position).quantity){
+        //System.out.println(" Quantity before calcualtion is "+userquantity );
+         if(userquantity <= productArray.get(position).quantity){
              isavailable = true;
-             productArray.get(position).quantity = productArray.get(position).quantity - quantity;
-             System.out.println("Remaining Quantity is "+productArray.get(position).quantity );
+
+             //System.out.println("Remaining Quantity is "+productArray.get(position).quantity );
                       }
          else { isavailable = false;
              System.out.println(isavailable+"");
          }
          return isavailable;
+    }
+    boolean calculateRestock(int position, int userquantity)
+    {   boolean isvalid = true;
+        if(userquantity <= productArray.get(position).quantity){
+        productArray.get(position).quantity = productArray.get(position).quantity - userquantity;}
+        else isvalid= false;
+        return isvalid;
     }
 
 }

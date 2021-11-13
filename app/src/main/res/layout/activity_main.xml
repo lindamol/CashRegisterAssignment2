@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/LightGrey"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
@@ -12,7 +13,7 @@
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="50sp"
-        android:background="@color/Wheat"
+       android:background="@color/teal_700"
         android:gravity="center"
         android:text="@string/textcashregister"
         android:textColor="@color/black"
@@ -25,7 +26,7 @@
         android:layout_below="@id/title"
         android:layout_marginLeft="20sp"
         android:layout_marginTop="50sp"
-        android:background="@color/Wheat"
+        android:textSize="20sp"
         android:gravity="center"
         android:text="@string/product_type"
         android:textColor="@color/black" />
@@ -38,19 +39,20 @@
         android:layout_marginLeft="40dp"
         android:layout_marginTop="50sp"
         android:layout_marginRight="20sp"
+        android:textSize="20sp"
         android:layout_toRightOf="@id/textViewproduct"
-        android:background="@color/Wheat"
         android:gravity="center"
         android:text="@string/textviewamount"
         android:textColor="@color/black" />
 
     <TableLayout
         android:id="@+id/tableid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@id/textViewproduct"
         android:layout_marginLeft="20sp"
-        android:layout_marginTop="20sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#000000">
 
 
         <TableRow
@@ -64,8 +66,10 @@
                 android:backgroundTint="#009688"
                 android:fontFamily="sans-serif-medium"
                 android:text="@string/button1"
-                android:textColor="@color/black"
-                android:textSize="16sp" />
+                android:textColor="#000000"
+                android:textSize="16sp"
+                app:strokeColor="#673AB7"
+                tools:ignore="TextContrastCheck" />
 
             <Button
                 android:id="@+id/button2"
@@ -161,7 +165,7 @@
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <Button
                 android:id="@+id/button0"
@@ -189,11 +193,11 @@
 
     <Button
         android:id="@+id/buyButton"
-        android:layout_width="65dp"
-        android:layout_height="190dp"
+        android:layout_width="78dp"
+        android:layout_height="191dp"
         android:layout_below="@id/textViewamount"
-        android:layout_marginLeft="29dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="21dp"
         android:layout_toRightOf="@id/tableid"
         android:backgroundTint="#009688"
         android:fontFamily="sans-serif-medium"
@@ -208,16 +212,17 @@
         android:layout_below="@id/tableid"
         android:layout_marginLeft="20sp"
         android:layout_marginTop="20sp"
-        android:background="@color/Wheat"
         android:gravity="center"
         android:text="@string/textQuantity"
-        android:textColor="@color/black" />
+        android:textColor="@color/black"
+        android:textSize="20sp" />
 
     <ListView
         android:id="@+id/listproduct"
         android:layout_width="match_parent"
         android:layout_height="284dp"
         android:layout_below="@id/textViewquantity"
+        android:layout_marginLeft="10sp"
         android:layout_marginTop="30sp"
         tools:visibility="visible" />
 
