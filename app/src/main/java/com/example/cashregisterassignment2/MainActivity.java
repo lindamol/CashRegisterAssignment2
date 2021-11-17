@@ -4,6 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -63,6 +64,13 @@ public class MainActivity extends AppCompatActivity implements  View.OnClickList
         buttonC.setOnClickListener(this);
         button0.setOnClickListener(this);
         buyButton.setOnClickListener(this);
+        Button buttonmanager = (Button)findViewById(R.id.buttonmanager);
+        buttonmanager.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openManagerActivity();
+            }
+        });
         managerobj.addtoArray();
          list_view = findViewById(R.id.listproduct);
          product_name= findViewById(R.id.textViewproduct);
@@ -76,6 +84,7 @@ public class MainActivity extends AppCompatActivity implements  View.OnClickList
             }
         });
     }
+
     @Override
     public void onClick(View v) {
         Button button = (Button) v;
@@ -139,5 +148,10 @@ public class MainActivity extends AppCompatActivity implements  View.OnClickList
         });
         AlertDialog alertDialog=dialog.create();
         alertDialog.show();
+    }
+    private void openManagerActivity(){
+        Intent managerintent = new Intent(this,ManagerActivity.class);
+        startActivity(managerintent);
+
     }
 }
