@@ -12,7 +12,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements  View.OnClickListener{
     ListView list_view;
@@ -25,15 +28,15 @@ public class MainActivity extends AppCompatActivity implements  View.OnClickList
     int quantity;
     TextView viewAmount;
     boolean isavailable = false;
-    ProductManager managerobj = new ProductManager();
+    static  ProductManager managerobj = new ProductManager();
     CashBaseAdapter adapter;
     double total;
-    AlertDialog.Builder builder;
+   //AlertDialog.Builder builder;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        builder = new AlertDialog.Builder(this);
+        //builder = new AlertDialog.Builder(this);
         Button button1 = findViewById(R.id.button1);
         Button button2 = findViewById(R.id.button2);
         Button button3 = findViewById(R.id.button3);
@@ -60,7 +63,6 @@ public class MainActivity extends AppCompatActivity implements  View.OnClickList
         buttonC.setOnClickListener(this);
         button0.setOnClickListener(this);
         buyButton.setOnClickListener(this);
-
         managerobj.addtoArray();
          list_view = findViewById(R.id.listproduct);
          product_name= findViewById(R.id.textViewproduct);
@@ -71,7 +73,6 @@ public class MainActivity extends AppCompatActivity implements  View.OnClickList
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 product_name.setText(managerobj.productArray.get(position).getProductname());
                 selectedPosition = position;
-
             }
         });
     }
@@ -86,47 +87,51 @@ public class MainActivity extends AppCompatActivity implements  View.OnClickList
             product_name.setText("");
                     }
         else if(v== buyButton ) {
-            if(text.isEmpty())
+            if(text.isEmpty()) //clicking on buybutton checks whether fields are empty or not
             { Toast.makeText(this,"All fields are required ", Toast.LENGTH_LONG).show();
             }
             else{
                 boolean isvalid = managerobj.calculateRestock(selectedPosition,quantity);
                 if(isvalid)
-                {System.out.println("Yes truee Its available");
-                    adapter.notifyDataSetChanged();
-                    alertDialog();}
+                {adapter.notifyDataSetChanged();//To update listview after each purchase
+                    String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());//date in string format
+                    managerobj.addtoHistory(date,selectedPosition,total,quantity); // passing the purchase details to history
+                    managerobj.printhistory();// To debug
+                    alertDialog();} // Alert dialog after Purchase
                 else{Toast.makeText(this,"Not Enough Quantity ", Toast.LENGTH_LONG).show();}
             }
 
                }
-        else {
+        else { //All digit presses
             text = text + buttontitle;
             textquantity.setText(text);
-            double price = managerobj.productArray.get(selectedPosition).getPrice();
-            quantity = Integer.parseInt(text);
-            total = price*quantity;
-            viewAmount.setText(total+"");
-           isavailable = managerobj.checkQuantity(selectedPosition,quantity);
+            isavailable = managerobj.checkQuantity(selectedPosition,Integer.parseInt(text)); //checking quantity
             if(isavailable == false){
                 Toast.makeText(this,"Not Enough Quantity ", Toast.LENGTH_LONG).show();
-
             }
-        }
+            //setting quantity as what we pressed
+            double price = managerobj.productArray.get(selectedPosition).getPrice(); // getting price from arraylist
+            quantity = Integer.parseInt(text);
+            total = price*quantity; // Calculating each time When a quantity is selected
+            viewAmount.setText(total+"");
+
+                   }
 
     }
-    private void alertDialog() {
+    private void alertDialog() { // Create an Alert with Message and two Button/OK and cancel
         AlertDialog.Builder dialog=new AlertDialog.Builder(this);
         String prodname = managerobj.productArray.get(selectedPosition).getProductname();
-        dialog.setMessage("Your Total Purchase for  "+text+" "+ prodname+ " is " +total);
-        dialog.setTitle("Thank You For Your Purchase");
-        dialog.setPositiveButton("YES",new DialogInterface.OnClickListener()
+        dialog.setMessage("Your Total Purchase for  "+text+" "+ prodname+ " is $" +total);
+        dialog.setTitle("Thank You For Your Purchase \uD83D\uDE04 ");
+        dialog.setPositiveButton("OK",new DialogInterface.OnClickListener() //for OK Button positive
               {
                     public void onClick(DialogInterface dialog,
                                         int which) {
                         Toast.makeText(getApplicationContext(),"Yes is clicked",Toast.LENGTH_LONG).show();
                     }
                 });
-        dialog.setNegativeButton("cancel",new DialogInterface.OnClickListener() {
+
+        dialog.setNegativeButton("cancel",new DialogInterface.OnClickListener() { // for cancel button Negative
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 Toast.makeText(getApplicationContext(),"cancel is clicked",Toast.LENGTH_LONG).show();
@@ -135,6 +140,4 @@ public class MainActivity extends AppCompatActivity implements  View.OnClickList
         AlertDialog alertDialog=dialog.create();
         alertDialog.show();
     }
-
-
 }

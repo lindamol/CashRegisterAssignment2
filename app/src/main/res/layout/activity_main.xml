@@ -13,7 +13,7 @@
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="50sp"
-       android:background="@color/teal_700"
+        android:background="@color/teal_700"
         android:gravity="center"
         android:text="@string/textcashregister"
         android:textColor="@color/black"
@@ -204,6 +204,18 @@
         android:text="@string/buttonBuy"
         android:textColor="@color/black"
         android:textSize="16sp"></Button>
+
+    <Button
+        android:id="@+id/buttonmanager"
+        android:layout_width="250sp"
+        android:layout_height="50sp"
+        android:textSize="18sp"
+        android:layout_below="@id/buyButton"
+        android:layout_marginStart="200sp"
+        android:layout_marginEnd="20sp"
+        android:backgroundTint="#009688"
+        android:text="MANAGER"
+        android:textColor="@color/black" />
 
     <TextView
         android:id="@+id/textViewquantity"

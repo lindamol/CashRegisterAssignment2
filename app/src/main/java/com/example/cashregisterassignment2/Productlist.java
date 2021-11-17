@@ -5,6 +5,7 @@ public class Productlist {
     int quantity;
     double price;
 
+
     public Productlist(String productname, int quantity, double price) {
         this.productname = productname;
         this.quantity = quantity;
