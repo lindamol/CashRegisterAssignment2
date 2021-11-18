@@ -1,6 +1,7 @@
 package com.example.cashregisterassignment2;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
@@ -16,15 +17,17 @@ public class HistoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
         Intent frommangerintent = getIntent();
+        historyRecyclerview = findViewById(R.id.historyRecyclerview);
+        historyRecyclerview.setLayoutManager(new LinearLayoutManager(this));
         if(!(this.getIntent().getExtras().getParcelableArrayList("forhistroryActivity") == null))
         {
             myhistorylist = this.getIntent().getExtras().getParcelableArrayList("forhistroryActivity");
+            System.out.println(myhistorylist);
+            HistoryAdapter adapter = new HistoryAdapter(this, myhistorylist);
+            historyRecyclerview.setAdapter(adapter);
         }
         else {System.out.println("Empty History");}
 //        System.out.println("Printing History in HistoryActivity:");
-//        System.out.println(myhistorylist);
-
-
-        historyRecyclerview = findViewById(R.id.historyRecyclerview);
+//
     }
 }

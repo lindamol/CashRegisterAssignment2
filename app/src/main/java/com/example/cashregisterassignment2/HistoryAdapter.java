@@ -1,5 +1,7 @@
 package com.example.cashregisterassignment2;
 
+import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -7,12 +9,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class HistoryAdapter  {
-    //extends RecyclerView.Adapter<HistoryAdapter.viewHolder>
-    /*public static class viewHolder extends RecyclerView.ViewHolder{
+import java.util.ArrayList;
+
+public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.viewHolder>  {
+   Context context;
+   ArrayList<Historylist> mylist;
+    public static class viewHolder extends RecyclerView.ViewHolder{
         private final TextView prodname;
         private  final TextView quantity;
         private final TextView price;
+        //viewholder, ie 1 row
         public viewHolder(@NonNull View itemView) {
             super(itemView);
             prodname = itemView.findViewById(R.id.hproductid);
@@ -20,7 +26,7 @@ public class HistoryAdapter  {
             price = itemView.findViewById(R.id.hpriceid);
         }
 
-        public TextView getProdname() {
+        public TextView getProdname() { //getters for elements in innerclass
             return prodname;
         }
 
@@ -32,15 +38,25 @@ public class HistoryAdapter  {
             return price;
         }
     }
+    HistoryAdapter(Context c, ArrayList<Historylist> list){
+          context = c;
+          mylist = list;
+    }
     @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+    public HistoryAdapter.viewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.history_row_layout,parent,false);
+        return new viewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull viewHolder holder, int position) {
+        holder.getProdname().setText(mylist.get(position).getProductname());
+        holder.getQuantity().setText(mylist.get(position).getQuantity()+"");
+        holder.getPrice().setText(mylist.get(position).getTotal()+"");
+        //holder.getProdname().setText("Helloo");
 
+        //double total = mylist.get(position).getTotal();
     }
 
 //    @Override
@@ -50,6 +66,6 @@ public class HistoryAdapter  {
 
     @Override
     public int getItemCount() {
-        return 0;
-    }*/
+        return mylist.size();
+    }
 }
