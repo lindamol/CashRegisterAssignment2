@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements  View.OnClickList
     TextView viewAmount;
     boolean isavailable = false;
     static  ProductManager managerobj = new ProductManager();
+   // static  Historylist historyobj = new Historylist();
     CashBaseAdapter adapter;
     double total;
    //AlertDialog.Builder builder;
@@ -69,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements  View.OnClickList
             @Override
             public void onClick(View v) {
                 openManagerActivity();
-            }
+            } // Manger Button
         });
         managerobj.addtoArray();
          list_view = findViewById(R.id.listproduct);
@@ -89,21 +90,23 @@ public class MainActivity extends AppCompatActivity implements  View.OnClickList
     public void onClick(View v) {
         Button button = (Button) v;
         String buttontitle = button.getText().toString();
-        if(v == buttonC){
+        if(v == buttonC){ //CancelButton
             text = "";
             textquantity.setText("");
             viewAmount.setText("");
             product_name.setText("");
                     }
         else if(v== buyButton ) {
-            if(text.isEmpty()) //clicking on buybutton checks whether fields are empty or not
+            if(text.isEmpty()|| product_name.getText() == "") //clicking on buybutton checks whether fields are empty or not
             { Toast.makeText(this,"All fields are required ", Toast.LENGTH_LONG).show();
             }
             else{
-                boolean isvalid = managerobj.calculateRestock(selectedPosition,quantity);
+                boolean isvalid = managerobj.purchaseHistory(selectedPosition,quantity);
                 if(isvalid)
                 {adapter.notifyDataSetChanged();//To update listview after each purchase
-                    String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());//date in string format
+                    //String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());//date in string format
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd__HH:mm:ss", Locale.getDefault());
+                    String date = sdf.format(new Date());
                     managerobj.addtoHistory(date,selectedPosition,total,quantity); // passing the purchase details to history
                     managerobj.printhistory();// To debug
                     alertDialog();} // Alert dialog after Purchase
@@ -119,15 +122,17 @@ public class MainActivity extends AppCompatActivity implements  View.OnClickList
                 Toast.makeText(this,"Not Enough Quantity ", Toast.LENGTH_LONG).show();
             }
             //setting quantity as what we pressed
-            double price = managerobj.productArray.get(selectedPosition).getPrice(); // getting price from arraylist
-            quantity = Integer.parseInt(text);
-            total = price*quantity; // Calculating each time When a quantity is selected
-            viewAmount.setText(total+"");
-
+              quantity = Integer.parseInt(text);
+            // Calculating each time When a quantity is selected
+            if((product_name.getText())!="" )
+            {total = managerobj.calculatePrice(selectedPosition,quantity);
+             viewAmount.setText(total+"");}
+            else{Toast.makeText(this,"All fields are required ", Toast.LENGTH_LONG).show();}
                    }
-
     }
-    private void alertDialog() { // Create an Alert with Message and two Button/OK and cancel
+
+    // Create an Alert with Message and two Button/OK and cancel
+    private void alertDialog() {
         AlertDialog.Builder dialog=new AlertDialog.Builder(this);
         String prodname = managerobj.productArray.get(selectedPosition).getProductname();
         dialog.setMessage("Your Total Purchase for  "+text+" "+ prodname+ " is $" +total);
@@ -149,8 +154,14 @@ public class MainActivity extends AppCompatActivity implements  View.OnClickList
         AlertDialog alertDialog=dialog.create();
         alertDialog.show();
     }
+    //To open ManagerActivity
     private void openManagerActivity(){
         Intent managerintent = new Intent(this,ManagerActivity.class);
+        Bundle bundlemanager = new Bundle();
+        //System.out.println("Printing manger.historyarrya");
+        //System.out.println(managerobj.historyArray);
+        bundlemanager.putParcelableArrayList("history",managerobj.historyArray);
+        managerintent.putExtras(bundlemanager);
         startActivity(managerintent);
 
     }

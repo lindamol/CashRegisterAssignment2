@@ -29,15 +29,12 @@ public class ProductManager {
 
     void printArray()
     { System.out.println(productArray.toString()); }
-
+    //Check quantity
     boolean checkQuantity(int position, int userquantity){
          boolean isavailable = false;
         //System.out.println(" Quantity before calcualtion is "+userquantity );
-
-
          if(userquantity <= productArray.get(position).quantity){
              isavailable = true;
-
              //System.out.println("Remaining Quantity is "+productArray.get(position).quantity );
                       }
          else { isavailable = false;
@@ -45,12 +42,17 @@ public class ProductManager {
          }
          return isavailable;
     }
-    boolean calculateRestock(int position, int userquantity)
+     //purchaseHistory
+    boolean purchaseHistory(int position, int userquantity)
     {   boolean isvalid = true;
         if(userquantity <= productArray.get(position).quantity){
         productArray.get(position).quantity = productArray.get(position).quantity - userquantity;}
         else isvalid= false;
-        return isvalid;
-    }
+        return isvalid;    }
+     double calculatePrice(int position, int quantity){
+         double total=0;
+         total = productArray.get(position).price*quantity;
+         return  total;
+     }
 
 }

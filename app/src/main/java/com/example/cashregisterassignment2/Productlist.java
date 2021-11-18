@@ -1,8 +1,11 @@
 package com.example.cashregisterassignment2;
 
-public class Productlist {
-    String productname;
-    int quantity;
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Productlist implements Parcelable {
+   String productname;
+   int quantity;
     double price;
 
 
@@ -10,6 +13,32 @@ public class Productlist {
         this.productname = productname;
         this.quantity = quantity;
         this.price = price;
+    }
+    //for parcelable
+//    public Productlist() {
+//
+//    }
+ //for Parcelable
+    protected Productlist(Parcel in) {
+        productname = in.readString();
+        quantity = in.readInt();
+        price = in.readDouble();
+    }
+
+    public static final Creator<Productlist> CREATOR = new Creator<Productlist>() {
+        @Override
+        public Productlist createFromParcel(Parcel in) {
+            return new Productlist(in);
+        }
+
+        @Override
+        public Productlist[] newArray(int size) {
+            return new Productlist[size];
+        }
+    };
+
+    public Productlist() {
+
     }
 
     public String getProductname() {
@@ -37,5 +66,17 @@ public class Productlist {
     }
     public String toString(){
         return "[" + productname + "," + quantity + "," + price+ "]";
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(productname);
+        dest.writeInt(quantity);
+        dest.writeDouble(price);
     }
 }

@@ -43,9 +43,9 @@ public class CashBaseAdapter extends BaseAdapter {
        TextView prodname = convertView.findViewById(R.id.productid);
        TextView qnty = convertView.findViewById(R.id.quantityid);
        TextView price = convertView.findViewById(R.id.priceid);
-       prodname.setText(mylist.get(position).productname);
-       qnty.setText(mylist.get(position).quantity+"");
-       price.setText(mylist.get(position).price+"");
+       prodname.setText(mylist.get(position).getProductname());
+       qnty.setText(mylist.get(position).getQuantity()+"");
+       price.setText(mylist.get(position).getPrice()+"");
        return convertView;
     }
 
