@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity implements  View.OnClickList
                 if(isvalid)
                 {adapter.notifyDataSetChanged();//To update listview after each purchase
                     //String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());//date in string format
-                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd__HH:mm:ss", Locale.getDefault());
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd , HH:mm:ss", Locale.getDefault());
                     String date = sdf.format(new Date());
                     managerobj.addtoHistory(date,selectedPosition,total,quantity); // passing the purchase details to history
                     managerobj.printhistory();// To debug
