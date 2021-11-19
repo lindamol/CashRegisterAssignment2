@@ -14,6 +14,10 @@ import java.util.ArrayList;
 public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.viewHolder>  {
    Context context;
    ArrayList<Historylist> mylist;
+   public interface listClickListener{
+     void onHistorySelected(Historylist selectedHistory);
+   }
+   public listClickListener listener;
     public static class viewHolder extends RecyclerView.ViewHolder{
         private final TextView prodname;
         private  final TextView quantity;
@@ -54,11 +58,13 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.viewHold
         holder.getProdname().setText(mylist.get(position).getProductname());
         holder.getQuantity().setText(mylist.get(position).getQuantity()+"");
         holder.getPrice().setText(mylist.get(position).getTotal()+"");
-        //holder.getProdname().setText("Helloo");
-
-        //double total = mylist.get(position).getTotal();
-    }
-
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onHistorySelected(mylist.get(position));
+            }
+        });
+            }
 //    @Override
 //    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 //

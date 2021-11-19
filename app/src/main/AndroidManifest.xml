@@ -10,8 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CashRegisterAssignment2">
         <activity
+            android:name=".DetailedHistoryActivity"
+            android:exported="true">
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="com.example.cashregisterassignment2.HistoryActivity" />
+        </activity>
+        <activity
             android:name=".HistoryActivity"
-            android:exported="true" >
+            android:exported="true">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.cashregisterassignment2.ManagerActivity" />

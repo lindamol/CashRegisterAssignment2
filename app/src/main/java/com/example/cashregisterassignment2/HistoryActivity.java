@@ -8,10 +8,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class HistoryActivity extends AppCompatActivity {
+public class HistoryActivity extends AppCompatActivity implements HistoryAdapter.listClickListener{
  RecyclerView historyRecyclerview;
  TextView historytextview;
  ArrayList<Historylist> myhistorylist = new ArrayList<>();
@@ -29,6 +30,7 @@ public class HistoryActivity extends AppCompatActivity {
             myhistorylist = this.getIntent().getExtras().getParcelableArrayList("forhistroryActivity");
             //System.out.println(myhistorylist);
             HistoryAdapter adapter = new HistoryAdapter(this, myhistorylist);
+            adapter.listener = this;
             historyRecyclerview.setAdapter(adapter);
         }
         else {System.out.println("Empty History");
@@ -38,5 +40,17 @@ public class HistoryActivity extends AppCompatActivity {
         }
 //        System.out.println("Printing History in HistoryActivity:");
 //
+    }
+
+    @Override
+    public void onHistorySelected(Historylist selectedHistory) {
+       // Toast.makeText(this,selectedHistory +"History is selected ",Toast.LENGTH_LONG).show();
+        openDetailedHistory(selectedHistory);
+    }
+    private void openDetailedHistory(Historylist selectedHistory){
+          Intent detailedintent = new Intent(this,DetailedHistoryActivity.class);
+          detailedintent.putExtra("dethistory",selectedHistory);
+         startActivity(detailedintent);
+
     }
 }
