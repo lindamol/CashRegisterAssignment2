@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 public class ManagerActivity extends AppCompatActivity {
     Button buttonHistory;
+    Button buttonRestock;
     ArrayList<Historylist> myhistoryarray = new ArrayList<>();
 
         @Override
@@ -19,6 +20,7 @@ public class ManagerActivity extends AppCompatActivity {
        setContentView(R.layout.activity_manager);
         Intent frommainintent = getIntent();
         buttonHistory = findViewById(R.id.history);
+        buttonRestock = findViewById(R.id.restock);
         buttonHistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -33,6 +35,12 @@ public class ManagerActivity extends AppCompatActivity {
                 openHistoryActivity();
             }
         });
+        buttonRestock.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                           openRestockActivity();
+                            }
+        });
             }
     private void openHistoryActivity() {
         Intent historyintent = new Intent(this,HistoryActivity.class);
@@ -40,5 +48,9 @@ public class ManagerActivity extends AppCompatActivity {
         bundlehistory.putParcelableArrayList("forhistroryActivity",myhistoryarray);
         historyintent.putExtras(bundlehistory);
         startActivity(historyintent);
+    }
+    private void openRestockActivity(){
+            Intent intent = new Intent(this,RestockActivity.class);
+            startActivity(intent);
     }
 }

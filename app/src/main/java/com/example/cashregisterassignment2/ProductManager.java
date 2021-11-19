@@ -7,17 +7,22 @@ public class ProductManager {
     ArrayList<Productlist> productArray = new ArrayList<>();
     ArrayList<Historylist> historyArray = new ArrayList<>();
 
-    Productlist list1 = new Productlist("Pants\uD83D\uDC56",30,75);
+    public ProductManager() {
+        Productlist list1 = new Productlist("Pants\uD83D\uDC56",30,75);
         Productlist list2 = new Productlist("Shoes \uD83E\uDD7E",90,45);
         Productlist list3 = new Productlist("Shirts \uD83E\uDDE5",300,35);
         Productlist list4 = new Productlist("Dress 👗 ",300,90);
+        productArray.add(list1);
+        productArray.add(list2);
+        productArray.add(list3);
+        productArray.add(list4);
 
-     void addtoArray(){
-                productArray.add(list1);
-                productArray.add(list2);
-                productArray.add(list3);
-                productArray.add(list4);
-                 }
+    }
+
+
+
+//     void addtoArray(){
+//    }
      void addtoHistory(String date,int position,double total,int quantity){
          String productname = productArray.get(position).getProductname();
          double price = productArray.get(position).getPrice();

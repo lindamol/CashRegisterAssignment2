@@ -1,5 +1,6 @@
 package com.example.cashregisterassignment2;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -29,7 +30,8 @@ public class MainActivity extends AppCompatActivity implements  View.OnClickList
     int quantity;
     TextView viewAmount;
     boolean isavailable = false;
-    static  ProductManager managerobj = new ProductManager();
+   //static  ProductManager managerobj = new ProductManager();
+   //ProductManager manger = ((myAPP)getApplication()).getManager();
    // static  Historylist historyobj = new Historylist();
     CashBaseAdapter adapter;
     double total;
@@ -72,18 +74,20 @@ public class MainActivity extends AppCompatActivity implements  View.OnClickList
                 openManagerActivity();
             } // Manger Button
         });
-        managerobj.addtoArray();
+       // managerobj.addtoArray();
+        //ProductManager managerobj = new ProductManager();
          list_view = findViewById(R.id.listproduct);
          product_name= findViewById(R.id.textViewproduct);
-         adapter = new CashBaseAdapter(this, managerobj.productArray);
+         adapter = new CashBaseAdapter(this, ((myAPP)getApplication()).getManager().productArray);
         list_view.setAdapter(adapter);
         list_view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                product_name.setText(managerobj.productArray.get(position).getProductname());
+                product_name.setText(((myAPP)getApplication()).getManager().productArray.get(position).getProductname());
                 selectedPosition = position;
             }
         });
+
     }
 
     @Override
@@ -101,14 +105,14 @@ public class MainActivity extends AppCompatActivity implements  View.OnClickList
             { Toast.makeText(this,"All fields are required ", Toast.LENGTH_LONG).show();
             }
             else{
-                boolean isvalid = managerobj.purchaseHistory(selectedPosition,quantity);
+                boolean isvalid = ((myAPP)getApplication()).getManager().purchaseHistory(selectedPosition,quantity);
                 if(isvalid)
                 {adapter.notifyDataSetChanged();//To update listview after each purchase
                     //String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());//date in string format
                     SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd , HH:mm:ss", Locale.getDefault());
                     String date = sdf.format(new Date());
-                    managerobj.addtoHistory(date,selectedPosition,total,quantity); // passing the purchase details to history
-                    managerobj.printhistory();// To debug
+                    ((myAPP)getApplication()).getManager().addtoHistory(date,selectedPosition,total,quantity); // passing the purchase details to history
+                    ((myAPP)getApplication()).getManager().printhistory();// To debug
                     alertDialog();} // Alert dialog after Purchase
                 else{Toast.makeText(this,"Not Enough Quantity ", Toast.LENGTH_LONG).show();}
             }
@@ -117,7 +121,7 @@ public class MainActivity extends AppCompatActivity implements  View.OnClickList
         else { //All digit presses
             text = text + buttontitle;
             textquantity.setText(text);
-            isavailable = managerobj.checkQuantity(selectedPosition,Integer.parseInt(text)); //checking quantity
+            isavailable = ((myAPP)getApplication()).getManager().checkQuantity(selectedPosition,Integer.parseInt(text)); //checking quantity
             if(isavailable == false){
                 Toast.makeText(this,"Not Enough Quantity ", Toast.LENGTH_LONG).show();
             }
@@ -125,7 +129,7 @@ public class MainActivity extends AppCompatActivity implements  View.OnClickList
               quantity = Integer.parseInt(text);
             // Calculating each time When a quantity is selected
             if((product_name.getText())!="" )
-            {total = managerobj.calculatePrice(selectedPosition,quantity);
+            {total = ((myAPP)getApplication()).getManager().calculatePrice(selectedPosition,quantity);
              viewAmount.setText(total+"");}
             else{Toast.makeText(this,"All fields are required ", Toast.LENGTH_LONG).show();}
                    }
@@ -134,7 +138,7 @@ public class MainActivity extends AppCompatActivity implements  View.OnClickList
     // Create an Alert with Message and two Button/OK and cancel
     private void alertDialog() {
         AlertDialog.Builder dialog=new AlertDialog.Builder(this);
-        String prodname = managerobj.productArray.get(selectedPosition).getProductname();
+        String prodname = ((myAPP)getApplication()).getManager().productArray.get(selectedPosition).getProductname();
         dialog.setMessage("Your Total Purchase for  "+text+" "+ prodname+ " is $" +total);
         dialog.setTitle("Thank You For Your Purchase \uD83D\uDE04 ");
         dialog.setPositiveButton("OK",new DialogInterface.OnClickListener() //for OK Button positive
@@ -160,9 +164,13 @@ public class MainActivity extends AppCompatActivity implements  View.OnClickList
         Bundle bundlemanager = new Bundle();
         //System.out.println("Printing manger.historyarrya");
         //System.out.println(managerobj.historyArray);
-        bundlemanager.putParcelableArrayList("history",managerobj.historyArray);
+        bundlemanager.putParcelableArrayList("history",((myAPP)getApplication()).getManager().historyArray);
         managerintent.putExtras(bundlemanager);
         startActivity(managerintent);
 
+    }
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
     }
 }
