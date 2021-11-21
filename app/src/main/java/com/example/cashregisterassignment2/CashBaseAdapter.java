@@ -12,6 +12,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 public class CashBaseAdapter extends BaseAdapter {
+    //sym_def_app_icon
     Context context;
     ArrayList<Productlist> mylist;
     //should create Array list to populate
