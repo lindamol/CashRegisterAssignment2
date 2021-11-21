@@ -32,7 +32,7 @@ public class RestockActivity extends AppCompatActivity {
         cancel = findViewById(R.id.cancel);
         list_view = findViewById(R.id.stocklist);
         editText = findViewById(R.id.edittext);
-        stocklist =((myAPP)getApplication()).getManager().productArray;
+        stocklist =((myAPP)getApplication()).getManager().productArray;//herer
         System.out.println("My Stocklist :" +((myAPP)getApplication()).getManager().productArray);
         adapter = new CashBaseAdapter(this,stocklist);
         list_view.setAdapter(adapter);

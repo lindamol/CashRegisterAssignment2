@@ -78,12 +78,12 @@ public class MainActivity extends AppCompatActivity implements  View.OnClickList
         //ProductManager managerobj = new ProductManager();
          list_view = findViewById(R.id.listproduct);
          product_name= findViewById(R.id.textViewproduct);
-         adapter = new CashBaseAdapter(this, ((myAPP)getApplication()).getManager().productArray);
+         adapter = new CashBaseAdapter(this, ((myAPP)getApplication()).getManager().productArray);//here
         list_view.setAdapter(adapter);
         list_view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                product_name.setText(((myAPP)getApplication()).getManager().productArray.get(position).getProductname());
+                product_name.setText(((myAPP)getApplication()).getManager().productArray.get(position).getProductname());//herre
                 selectedPosition = position;
             }
         });

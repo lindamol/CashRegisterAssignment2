@@ -6,6 +6,8 @@ import java.util.Date;
 public class ProductManager {
     ArrayList<Productlist> productArray = new ArrayList<>();
     ArrayList<Historylist> historyArray = new ArrayList<>();
+   // ((myAPP)getApplication()).getManager();
+
 
     public ProductManager() {
         Productlist list1 = new Productlist("Pants\uD83D\uDC56",30,75);
@@ -16,6 +18,7 @@ public class ProductManager {
         productArray.add(list2);
         productArray.add(list3);
         productArray.add(list4);
+
 
     }
 
@@ -51,7 +54,7 @@ public class ProductManager {
     boolean purchaseHistory(int position, int userquantity)
     {   boolean isvalid = true;
         if(userquantity <= productArray.get(position).quantity){
-        productArray.get(position).quantity = productArray.get(position).quantity - userquantity;}
+            productArray.get(position).quantity = productArray.get(position).quantity - userquantity;}
         else isvalid= false;
         return isvalid;    }
      double calculatePrice(int position, int quantity){
