@@ -3,14 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Manjaly/Documents/Android/CashRegisterAssignment2/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.146875" />
         <entry key="..\:/Users/Manjaly/Documents/Android/CashRegisterAssignment2/app/src/main/res/layout/activity_detailed_history.xml" value="0.264" />
         <entry key="..\:/Users/Manjaly/Documents/Android/CashRegisterAssignment2/app/src/main/res/layout/activity_history.xml" value="0.264" />
         <entry key="..\:/Users/Manjaly/Documents/Android/CashRegisterAssignment2/app/src/main/res/layout/activity_list.xml" value="0.22864583333333333" />
-        <entry key="..\:/Users/Manjaly/Documents/Android/CashRegisterAssignment2/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/Users/Manjaly/Documents/Android/CashRegisterAssignment2/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/Manjaly/Documents/Android/CashRegisterAssignment2/app/src/main/res/layout/activity_manager.xml" value="0.23854166666666668" />
-        <entry key="..\:/Users/Manjaly/Documents/Android/CashRegisterAssignment2/app/src/main/res/layout/activity_restock.xml" value="0.12" />
+        <entry key="..\:/Users/Manjaly/Documents/Android/CashRegisterAssignment2/app/src/main/res/layout/activity_restock.xml" value="0.264" />
         <entry key="..\:/Users/Manjaly/Documents/Android/CashRegisterAssignment2/app/src/main/res/layout/history_row_layout.xml" value="0.1828125" />
         <entry key="..\:/Users/Manjaly/Documents/Android/CashRegisterAssignment2/app/src/main/res/layout/list_row_layout.xml" value="0.264" />
+        <entry key="..\:/Users/Manjaly/Documents/Android/CashRegisterAssignment2/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.15885416666666666" />
+        <entry key="..\:/Users/Manjaly/Documents/Android/CashRegisterAssignment2/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.15885416666666666" />
       </map>
     </option>
   </component>

@@ -44,6 +44,7 @@
             android:layout_marginLeft="100dp"
             android:layout_weight="1"
             android:gravity="center"
+            android:onClick="saveClicked"
             android:text="SAVE" />
 
         <Button
@@ -54,6 +55,7 @@
             android:layout_marginRight="100dp"
             android:layout_weight="1"
             android:gravity="center"
+            android:onClick="Cancelclicked"
             android:text="CANCEL" />
     </LinearLayout>
 

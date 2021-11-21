@@ -21,9 +21,11 @@
 
     <TextView
         android:id="@+id/textViewproduct"
-        android:layout_width="225dp"
-        android:layout_height="50dp"
+        android:layout_width="211dp"
+        android:layout_height="53dp"
         android:layout_below="@id/title"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="20dp"
         android:layout_marginLeft="20sp"
         android:layout_marginTop="50sp"
         android:gravity="center"
@@ -36,14 +38,16 @@
         android:layout_width="91dp"
         android:layout_height="50dp"
         android:layout_below="@id/title"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="50sp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginLeft="6dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="11dp"
         android:layout_marginRight="20sp"
-        android:textSize="20sp"
         android:layout_toRightOf="@id/textViewproduct"
         android:gravity="center"
         android:text="@string/textviewamount"
-        android:textColor="@color/black" />
+        android:textColor="@color/black"
+        android:textSize="20sp" />
 
     <TableLayout
         android:id="@+id/tableid"
@@ -209,13 +213,14 @@
         android:id="@+id/buttonmanager"
         android:layout_width="250sp"
         android:layout_height="50sp"
-        android:textSize="18sp"
         android:layout_below="@id/buyButton"
+        android:layout_alignParentEnd="true"
         android:layout_marginStart="200sp"
-        android:layout_marginEnd="20sp"
+        android:layout_marginEnd="20dp"
         android:backgroundTint="#009688"
         android:text="MANAGER"
-        android:textColor="@color/black" />
+        android:textColor="@color/black"
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/textViewquantity"
@@ -234,8 +239,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/textViewquantity"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="4dp"
         android:layout_marginLeft="10sp"
-        android:layout_marginTop="30sp"
+        android:layout_marginTop="27dp"
+        android:layout_marginEnd="-3dp"
+        android:layout_marginBottom="3dp"
         tools:visibility="visible" />
 
 </RelativeLayout>

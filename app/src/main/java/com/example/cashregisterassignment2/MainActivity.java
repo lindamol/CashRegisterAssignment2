@@ -162,8 +162,6 @@ public class MainActivity extends AppCompatActivity implements  View.OnClickList
     private void openManagerActivity(){
         Intent managerintent = new Intent(this,ManagerActivity.class);
         Bundle bundlemanager = new Bundle();
-        //System.out.println("Printing manger.historyarrya");
-        //System.out.println(managerobj.historyArray);
         bundlemanager.putParcelableArrayList("history",((myAPP)getApplication()).getManager().historyArray);
         managerintent.putExtras(bundlemanager);
         startActivity(managerintent);

@@ -3,6 +3,7 @@ package com.example.cashregisterassignment2;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -10,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
+
 
 import java.util.ArrayList;
 
@@ -34,12 +36,15 @@ public class RestockActivity extends AppCompatActivity {
         System.out.println("My Stocklist :" +((myAPP)getApplication()).getManager().productArray);
         adapter = new CashBaseAdapter(this,stocklist);
         list_view.setAdapter(adapter);
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+//        cancel.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+////                Intent intent = new Intent(this,MainActivity.class);
+////                startActivity(intent);
+//                finish();
+//            }
+//        });
+
         list_view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -47,21 +52,46 @@ public class RestockActivity extends AppCompatActivity {
             }
         });
 
-        save.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                System.out.println("Save Button Clicked");
-                if(!editText.getText().toString().isEmpty()){
-                    userQnty = Integer.parseInt(editText.getText().toString());
-                    int oldqnty = stocklist.get(selectedPosition).getQuantity();
-                    int newqnty = userQnty+oldqnty;
-                    stocklist.get(selectedPosition).setQuantity(newqnty);
-                    adapter.notifyDataSetChanged();
+//        save.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if(editText.getText().toString().isEmpty())
+//                {
+//                    Toast.makeText(this, "All fields are Required", Toast.LENGTH_SHORT).show();
+//                }
+//                if(!editText.getText().toString().isEmpty()){
+//                    userQnty = Integer.parseInt(editText.getText().toString()); // string from the Edittext
+//                    int oldqnty = stocklist.get(selectedPosition).getQuantity();//get the quantity from the arrayist
+//                    int newqnty = userQnty+oldqnty;// add the userentertd qnty to qnty in the arraylist
+//                    stocklist.get(selectedPosition).setQuantity(newqnty); // set the new quantity in to arraylist
+//                    adapter.notifyDataSetChanged(); // notify change
+//
+//                }
+//
+//            }
+//        });
 
+    }
+
+
+    public void Cancelclicked(View view) {
+        Intent intent = new Intent(this,MainActivity.class);
+                startActivity(intent);
+                finish();
+    }
+
+    public void saveClicked(View view) {
+        if(editText.getText().toString().isEmpty())
+                {
+                    Toast.makeText(this, "All fields are Required", Toast.LENGTH_SHORT).show();
                 }
-            }
-        });
-
+                else{
+                    userQnty = Integer.parseInt(editText.getText().toString()); // string from the Edittext
+                    int oldqnty = stocklist.get(selectedPosition).getQuantity();//get the quantity from the arrayist
+                    int newqnty = userQnty+oldqnty;// add the userentertd qnty to qnty in the arraylist
+                    stocklist.get(selectedPosition).setQuantity(newqnty); // set the new quantity in to arraylist
+                    adapter.notifyDataSetChanged(); // notify change
+                }
     }
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
